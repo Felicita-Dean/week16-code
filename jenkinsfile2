@@ -13,6 +13,6 @@ pipeline {
                 sh 'mvn clean test compile install package'
             }
         }
+      }
     }
-}
 }
