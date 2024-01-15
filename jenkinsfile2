@@ -11,7 +11,7 @@ pipeline {
                 }
             }
                 }
-                }
+    
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Felicita-Dean_week16-code'
             }
         stage(' all maven commands'){
@@ -19,4 +19,5 @@ pipeline {
                 sh 'mvn clean test compile install package'
             }
         }
+}
     
