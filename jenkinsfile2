@@ -8,11 +8,12 @@ pipeline {
             steps{
                 sh 'mvn sonar:sonar'
         }
+    }
         stage('all maven commands'){
             steps{
                 sh 'mvn clean test compile install package'
             }
         }
-      }
+      
     }
 }
