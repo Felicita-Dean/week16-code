@@ -1,10 +1,11 @@
 pipeline {
-    agent any
+    agent any 
     tools {
         maven 'M2_HOME'
     }
     stages{
         stage('sonarqube scan'){
+            agent {docker { image 'maven:3-amazoncorretto-17-debian' }}
             steps{
                 withSonarQubeEnv('sonarserver'){ 
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Felicita-Dean_week16-code'
@@ -19,7 +20,7 @@ pipeline {
         }
       stage('upload artifact'){
         steps{
-            sh 'curl -uadmin:APADn3ZPJw2JFuwy5FJX8nnczXD -T target/bio*.jar "http://ec2-54-210-18-185.compute-1.amazonaws.com:8081/artifactory/geoapp/"'
+            sh 'curl -u admin:password -T target/bio*.jar "http://ec2-54-236-33-62.compute-1.amazonaws.com:8081/artifactory/geoapp/"'
         }
       }
       stage('image build'){
